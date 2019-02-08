@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canaries-deploy-1
+  labels:
+    app: canaries
+    version: v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: canaries
+  template:
+    metadata:
+      labels:
+        app: canaries
+        version: v1
+    spec:
+      containers:
+      - name: canaries
+        image: jyee/canary-deploy-basics:v1
+        ports:
+          - containerPort: 80
