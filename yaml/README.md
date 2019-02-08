@@ -6,22 +6,15 @@ This directory contains all of the YAML for the demonstration
 
    ```
    curl -L https://git.io/getLatestIstio | sh -
-   cd istio-1.0.3
+   # cd to the istio version you downloaded
+   cd istio-1.0.#
    export PATH=$PWD/bin:$PATH
    ```
    For more info, see https://istio.io/docs/setup/kubernetes/download-release/
 1. **Install Istio**
 
-   Istio has a number of custom resource definitions (CRDs) that first need to be defined.
    ```
-   kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
+   kubectl apply -f istio/install/kubernetes/istio-demo.yaml
    ```
-   Next, create the Istio namespace.
-   ```
-   kubectl create namespace istio-system
-   ```
-   Finally apply the Istio minimal installation from this project directory.
-   ```
-   kubectl apply -f istio/istio-minimal.yaml
-   ```
-   For more info, see https://istio.io/docs/setup/kubernetes/minimal-install/
+
+   Note: if the install generates errors about "no matches for kind...", wait a second and re-run the command above. This usually happens when Kubernetes is not done fully setting up resources.
